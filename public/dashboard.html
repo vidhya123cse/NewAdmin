@@ -9,22 +9,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
 
-    <script src="/__/firebase/7.19.1/firebase-app.js"></script>
-    <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
-    <script src="/__/firebase/7.19.1/firebase-auth.js"></script>
-    <script src="/__/firebase/7.19.1/firebase-firestore.js"></script>
-    <script src="/__/firebase/init.js"></script>
-    <script src="dashboard.js"></script>
-
+    
     <script>
-      firebase.auth().onAuthStateChanged(function(user) {
-        console.log(user)
-    if (!user) {
-      
-        window.location.href = "index.html";
-    } 
-   
-  });
+  function AddManager(){
+    $("#count").hide(); 
+    $("#addtelecallers").hide(); 
+    $("#addstudent").hide(); 
+
+    document.getElementById("addmanagertab").classList.add("active");
+    document.getElementById("dashboardtab").classList.remove("active");
+    document.getElementById("addtelecallerstab").classList.remove("active");
+    document.getElementById("addstudenttab").classList.remove("active");
+
+    document.getElementById("addmanager").style.display = 'block';
+  }
+  function AddTelecallers(){
+    $("#count").hide(); 
+    $("#addmanager").hide(); 
+    $("#addstudent").hide(); 
+
+    document.getElementById("addtelecallerstab").classList.add("active");
+    document.getElementById("dashboardtab").classList.remove("active");
+    document.getElementById("addmanagertab").classList.remove("active");
+    document.getElementById("addstudenttab").classList.remove("active");
+
+    document.getElementById("addtelecallers").style.display = 'block';
+  }
+  function AddStudent(){
+    $("#count").hide(); 
+    $("#addmanager").hide(); 
+    $("#addtelecallers").hide(); 
+
+    document.getElementById("addstudenttab").classList.add("active");
+    document.getElementById("dashboardtab").classList.remove("active");
+    document.getElementById("addmanagertab").classList.remove("active");
+    document.getElementById("addtelecallerstab").classList.remove("active");
+
+    document.getElementById("addstudent").style.display = 'block';
+  }
     </script>
 
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -37,6 +59,24 @@
     
   </head>
   <body>
+    <script src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.19.1/firebase-auth.js"></script>
+    <script src="/__/firebase/7.19.1/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="dashboard.js"></script>
+    <script>
+       firebase.auth().onAuthStateChanged(function(user) {
+        console.log(user)
+        
+    if (!user) {
+      
+        window.location.href = "index.html";
+    } 
+   
+  });
+    </script>
+
     <div class="page">
       <header class="header">
         <nav class="navbar">
@@ -73,10 +113,10 @@
           </div>
         <span class="heading">Main</span>
           <ul class="list-unstyled">
-            <li class="active"><a href="dashboard.html"> <i class="fa fa-tachometer"></i>Dashboard </a></li>
-            <li><a href="addmanager.html"> <i class="fa fa-plus"></i>Add Manager </a></li>
-            <li><a href="addstudent.html"> <i class="fa fa-plus"></i>Add Student </a></li>
-            <li><a href="addtelecaller.html"> <i class="fa fa-phone"></i>Add TeleCaller </a></li>      
+            <li class="active" id="dashboardtab"><a href="dashboard.html"> <i class="fa fa-tachometer"></i>Dashboard </a></li>
+            <li id="addmanagertab"><a onclick="AddManager()"><i class="fa fa-plus"></i>Add Manager </a></li>
+            <li id="addstudenttab"><a onclick="AddStudent()"> <i class="fa fa-plus"></i>Add Student </a></li>
+            <li id="addtelecallerstab"><a onclick="AddTelecallers()"> <i class="fa fa-phone"></i>Add TeleCaller </a></li>      
         </nav>
         <div class="content-inner">
           <header class="page-header">
@@ -84,7 +124,7 @@
               <h2 class="no-margin-bottom">Dashboard</h2>
             </div>
           </header>
-          <section class="dashboard-counts no-padding-bottom">
+          <section class="dashboard-counts no-padding-bottom" id="count">
             <div class="container-fluid">
               <div class="row bg-white has-shadow">
                 <div class="col-xl-3 col-sm-6">
@@ -141,7 +181,35 @@
               </div>
             </div>
           </section> -->
-    
+
+          <section class="dashboard-counts no-padding-bottom" id="addmanager" style="display: none;">
+            <div class="container-fluid">
+              <div class="row bg-white has-shadow">
+                <h4 class="card-title">ADD MANAGERS</h4>
+
+              </div>
+            </div>
+          </section>
+
+          <section class="dashboard-counts no-padding-bottom" id="addstudent" style="display: none;">
+            <div class="container-fluid">
+              <div class="row bg-white has-shadow">
+                <h4 class="card-title">ADD STUDENTS</h4>
+
+              </div>
+            </div>
+          </section>
+
+          <section class="dashboard-counts no-padding-bottom" id="addtelecallers" style="display: none;">
+            <div class="container-fluid">
+              <div class="row bg-white has-shadow">
+                <h4 class="card-title">ADD TELECALLERS</h4>
+
+              </div>
+            </div>
+          </section>
+          
+  
           <footer class="main-footer">
             <div class="container-fluid">
               <div class="row">

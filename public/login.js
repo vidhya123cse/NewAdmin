@@ -1,6 +1,7 @@
 
 function submitclick()
 {
+    $('#cover-spin').show(0)
     var email = document.getElementById("login-username").value;
     var password = document.getElementById("login-password").value;
 
@@ -13,15 +14,16 @@ function submitclick()
         // ...
         console.log(errorCode)
         console.log(errorMessage)
+        $('#cover-spin').hide(0)
         window.alert("Error:" + errorMessage)
+        
       });
     }
     else
     {
+        $('#cover-spin').hide(0)
         window.alert("Form is InComplete")
     }
-
-    
       
     
 }

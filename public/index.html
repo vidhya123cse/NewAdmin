@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/custom.css">
     <link rel="shortcut icon" href="img/favicon.ico"> 
     <script src="login.js"></script>
-    
+   
   </head>
   <body>
 
@@ -25,7 +25,20 @@
       <script src="/__/firebase/7.19.1/firebase-auth.js"></script>
       <script src="/__/firebase/7.19.1/firebase-firestore.js"></script>
       <script src="/__/firebase/init.js"></script>
-  
+      <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        $('#cover-spin').hide(0)
+          window.location.href = "dashboard.html";
+      } 
+      $('#cover-spin').hide(0)
+     
+    });
+      </script>
+      
+      
+      <div id="cover-spin"></div>
+
     <div class="page login-page">
       <div class="container d-flex align-items-center">
         <div class="form-holder has-shadow">
@@ -68,14 +81,5 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/front.js"></script>
   
-    <script>
-      firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        window.location.href = "dashboard.html";
-    } 
-   
-  });
-    </script>
-    
   </body>
 </html>
