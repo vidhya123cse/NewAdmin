@@ -63,6 +63,7 @@
     <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
     <script src="/__/firebase/7.19.1/firebase-auth.js"></script>
     <script src="/__/firebase/7.19.1/firebase-firestore.js"></script>
+    
     <script src="/__/firebase/init.js"></script>
     <script src="dashboard.js"></script>
     <script>
@@ -192,6 +193,7 @@
                         <h2>Add Manager</h2>
                       </div>
                   </div>
+                  <div class="alert">New Manager is added</div>
                   <div class="row">
                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
                           <form id="managerform" method="POST" role="form">
@@ -213,7 +215,7 @@
                               </div>                            
                              
                               <div class="text-center">
-                                  <button type="submit" class="btn bg-violet" id="submit"onclick="formSubmit()">Send Message</button>
+                                  <button type="submit" class="btn bg-violet" id="submit" onclick="myFunction()">Send Message</button>
                               </div>
                           </form>
                       </div>
