@@ -34,18 +34,20 @@ function myFunction() {
   document.getElementById('managerform').reset();
 }
 
-// Function to get get form values
-function getInputVal(id){
-  return document.getElementById(id).value;
-}
+
 
 
 // Save message to firebase
 function saveMessage(name, email, phone, pos){
-    db.collection('manager').add({
+    var newRef = db.collection("manager").doc();
+    newRef.set({
       name:name,
       email:email,
       phone:phone,
-      pos:pos
+      pos:pos,
+      id:newRef
     });
+    
+  
 };
+
