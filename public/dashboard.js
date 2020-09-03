@@ -35,17 +35,36 @@ function myFunction() {
 }
 
 
+function create_UUID(){
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (dt + Math.random()*16)%16 | 0;
+      dt = Math.floor(dt/16);
+      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
+}
 
+console.log(create_UUID());
 
+static var c=0
 // Save message to firebase
 function saveMessage(name, email, phone, pos){
-    var newRef = db.collection("manager").doc();
+    uuid=create_UUID();
+    var newRef = db.collection("manager").doc(uuid);
+  
     newRef.set({
       name:name,
       email:email,
       phone:phone,
       pos:pos,
-      id:newRef
+      id:uuid
+    });
+    c=c+1;
+    var countref = db.collection("count").doc("managercount");
+ 
+    countref.set({
+      manager:c
     });
     
   
