@@ -45,27 +45,44 @@ function create_UUID(){
   return uuid;
 }
 
-console.log(create_UUID());
 
-static var c=0
+
 // Save message to firebase
 function saveMessage(name, email, phone, pos){
-    uuid=create_UUID();
-    var newRef = db.collection("manager").doc(uuid);
+  uuid=create_UUID();
+  var newRef = db.collection("manager").doc(uuid);
   
-    newRef.set({
-      name:name,
-      email:email,
-      phone:phone,
-      pos:pos,
-      id:uuid
+  newRef.set({
+    name:name,
+    email:email,
+    phone:phone,
+    pos:pos,
+    id:uuid
     });
-    c=c+1;
-    var countref = db.collection("count").doc("managercount");
- 
-    countref.set({
-      manager:c
-    });
+//new manager added
+
+  var docRef = db.collection("count").doc("allcount");
+  docRef.get().then(function(doc) {
+  if (doc.exists) {
+  console.log("Document data:", doc.data());
+  doc= doc.data();
+  value=doc.manager;
+  value++
+
+  docRef.update({
+    manager:value
+  });
+  console.log(value);
+  //manager count added
+  
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+  }).catch(function(error) {
+  console.log("Error getting document:", error);
+  });
+
     
   
 };
