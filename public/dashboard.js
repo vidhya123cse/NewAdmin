@@ -7,8 +7,23 @@ function SignOut()
       
       window.location.href = "index.html";
 }
+
+
 const form=document.querySelector('#managerform');
 const db=firebase.firestore();
+
+
+//display count
+  var docRef = db.collection("count").doc("allcount");
+  docRef.get().then(function(doc) {
+  if (doc.exists) {
+  doc= doc.data();
+  managercount=doc.manager;
+  console.log(managercount)
+  document.getElementById("man").innerHTML = managercount;
+
+  }
+});
 
 
 //Submit form
