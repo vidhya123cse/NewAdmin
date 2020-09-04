@@ -180,7 +180,7 @@
                     <div class="icon bg-red"><i class="icon-user"></i></div>
                     <div class="title"><span>Students<br></span>
                       <div class="progress">
-                        <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                        <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="150" class="progress-bar bg-red"></div>
                       </div>
                     </div>
                     <div class="number"><strong id="stud"></strong></div>
@@ -191,7 +191,7 @@
                     <div class="icon bg-orange"><i class="icon-check"></i></div>
                     <div class="title"><span>TeleCallers<br></span>
                       <div class="progress">
-                        <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                        <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
                       </div>
                     </div>
                     <div class="number"><strong id="tele">50</strong></div>
@@ -276,19 +276,21 @@
             </section>
               <div id=operation1 style = "display:none;">
                       <br><br>
-                <form class="md-form" action="#">
+              
                   <div class="file-field">
                     <div class="btn btn-primary btn-sm float-left">
                       <span>Choose files</span>
-                      <input type="file"  accept=".xlsx, .xls,.ods" multiple>
+                      <input type="file"  id="files" accept=".xlsx, .xls,.ods"enctype ="multipart/form-data" action="sendFile">
                       </div>
                   </div>
                   <br>
                   <br>
                   <div class="text-center">
-                    <button type="submit" class="btn bg-violet" id="submit">Submit File</button>
+                    <button type="submit" onclick ="ExcelProcess();" class="btn bg-violet" id="submit">Submit File</button>
                 </div>
-                </form>
+                <p id="uploading"></p>
+              <progress value="0" max="100" id="progress"></progress>
+              
               </div>
 
 
