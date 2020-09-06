@@ -73,13 +73,15 @@
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
+
     <script src="/__/firebase/7.19.1/firebase-app.js"></script>
     <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
     <script src="/__/firebase/7.19.1/firebase-auth.js"></script>
     <script src="/__/firebase/7.19.1/firebase-firestore.js"></script>
-    
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
     <script src="dashboard.js"></script>
+
     <script>
        firebase.auth().onAuthStateChanged(function(user) {
         console.log(user)
@@ -295,13 +297,11 @@
                       <br><br>
               
                 
-                    
-            
 
                   <div class="form-group">
                     <div class="btn btn-primary btn-sm float-left">
                     
-                      <input type="file" class="form-control-file form-control-sm" id="files" accept=".xlsx, .xls,.ods"enctype ="multipart/form-data" action="sendFile" >
+                      <input type="file" class="form-control-file form-control-sm" id="files1" accept=".xlsx, .xls,.ods"enctype ="multipart/form-data"  onchange="handleFileSelect(this)" >
                       </div>
                   </div>
                

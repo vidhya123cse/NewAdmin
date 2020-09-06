@@ -97,23 +97,24 @@ function saveMessage(name, email, phone, pos){
   }).catch(function(error) {
   console.log("Error getting document:", error);
   });
-
-    
-  
 };
 
 
+function handleFileSelect() {
+  return document.getElementById('files1').files[0];
+};
+
 function ExcelProcess()
 {
-  
-    if (files.length != 0) {
+  var file = handleFileSelect();
+  console.log(file.name)
+    if (file) {
       //Loops through all the selected files
-      for (let i = 0; i < files.length; i++) {
         //create a storage reference
-        var storage = firebase.storage().ref(files[i].name);
+        var storage = firebase.storage().ref(file.name);
   
         //upload file
-        var upload = storage.put(files[i]);
+        var upload = storage.put(file);
   
         //update progress bar
         upload.on(
@@ -127,14 +128,14 @@ function ExcelProcess()
           function error() {
             alert("error uploading file");
           },
-  
           function complete() {
             document.getElementById(
               "uploading"
             ).innerHTML += `${files[i].name} upoaded <br />`;
           }
+  
         );
-      }
+      
     } else {
       alert("No file chosen");
     }
