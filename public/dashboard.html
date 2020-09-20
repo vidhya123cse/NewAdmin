@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
 
+    <script src="xlsx.full.min.js"></script>
     
   <script>
       //display count
@@ -56,7 +57,7 @@
   }
 
   </script>
-
+  
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/fontastic.css">
@@ -71,6 +72,7 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" lang="javascript"src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.1/xlsx.full.min.js"></script>
   </head>
   <body>
 
@@ -301,14 +303,14 @@
                   <div class="form-group">
                     <div class="btn btn-primary btn-sm float-left">
                     
-                      <input type="file" class="form-control-file form-control-sm" id="files1" accept=".xlsx, .xls,.ods"enctype ="multipart/form-data"  onchange="handleFileSelect(this)" >
+                      <input type="file" class="form-control-file form-control-sm" id="fileUpload" accept=".xlsx, .xls,.ods" enctype ="multipart/form-data"  onchange="handleFileSelect(this)" >
                       </div>
                   </div>
                
                   <br>
                   <br>
                   <div class="text-center">
-                    <button type="submit" onclick ="ExcelProcess();" class="btn bg-violet" id="submit">Submit File</button>
+                    <button type="submit" onclick ="handleImageUpload()"class="btn bg-violet" id="submit">Submit File</button>
                 </div>
                 <p id="uploading"></p>
               <progress value="0" max="100" id="progress"></progress>

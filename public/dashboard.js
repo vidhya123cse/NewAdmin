@@ -101,43 +101,82 @@ function saveMessage(name, email, phone, pos){
 
 
 function handleFileSelect() {
-  return document.getElementById('files1').files[0];
+  return document.getElementById('fileUpload').files[0];
 };
 
 function ExcelProcess()
 {
+
   var file = handleFileSelect();
   console.log(file.name)
     if (file) {
-      //Loops through all the selected files
-        //create a storage reference
-        var storage = firebase.storage().ref(file.name);
-  
-        //upload file
-        var upload = storage.put(file);
-  
-        //update progress bar
-        upload.on(
-          "state_changed",
-          function progress(snapshot) {
-            var percentage =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            document.getElementById("progress").value = percentage;
-          },
-  
-          function error() {
-            alert("error uploading file");
-          },
-          function complete() {
-            document.getElementById(
-              "uploading"
-            ).innerHTML += `${files[i].name} upoaded <br />`;
-          }
-  
-        );
-      
-    } else {
-      alert("No file chosen");
-    }
-  
+
+      var storage = firebase.storage().ref(file.name);
+      var upload = storage.put(file);
+      upload.on(
+        "state_changed",
+        function progress(snapshot) {
+          var percentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          document.getElementById("progress").value = percentage;
+        },
+
+        function error() {
+          alert("error uploading file");
+        },
+        function() {
+          console.log("hello")
+           upload.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            console.log('File available at', downloadURL);
+            const proxyurl = "https://telemonitor-aea77.web.app/";
+            var url = 'soccer_players.xlsx';
+           
+
+/* set up async GET request */
+var req = new XMLHttpRequest();
+req.open("GET", url, true);
+req.responseType = "arraybuffer";
+
+req.onload = function(e) {
+  var data = new Uint8Array(req.response);
+  var workbook = XLSX.read(data, {type:"array"});
+
+  var first_sheet_name = workbook.SheetNames[0];
+  var worksheet = workbook.Sheets[first_sheet_name];
+  jsonsheet = XLSX.utils.sheet_to_json(worksheet)
+  console.log(jsonsheet)
+
+    db.collection("menu").doc().set({jsonsheet}).then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+
 }
+
+req.send();
+      
+})})
+    }}
+
+
+    function handleImageUpload() {
+      
+      const formData = new FormData()
+      formData.append('myFile', handleFileSelect())
+    
+      fetch('', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.path)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+    }
+    
+   
